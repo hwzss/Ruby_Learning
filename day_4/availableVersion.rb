@@ -5,12 +5,11 @@ def availableVersion(version_number)
  		puts "version_number格式不对，正确格式应该为 A.B.C "
  		return false
  	end
-	# version_arrs = version_number.split(".").map{&:to_i}	
 	true	
 end
 
 # 满足／^\d{1,}*／的值格式成 A.B.C的形式
-def fixVersionNumber(version_number)
+def formatABC(version_number)
 
 	version_arrs = version_number.split('.')
 	
@@ -23,7 +22,7 @@ def fixVersionNumber(version_number)
 end
 
 # 将满足正则/^\d{1,}.\d.\d$/ 的值进行自增1
-def addVersionNumber(version_number)
+def increment(version_number)
 
 	version_arrs = version_number.split('.').map(&:to_i)
 
