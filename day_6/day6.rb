@@ -1,35 +1,57 @@
 
 
-# TODO: 遍历处目录下所有的制定后缀文件的名称
+# TODO: 遍历处目录下所有的指定后缀文件的名称
 def fileNamesWithSuffix(fileSuffix); end
+
+def pathWithPodspecSuffix(path)
+
+	path = File.expand_path(path)
+	return nil unless File.exist?(path)
+
+	unless path =~ /.podspec$/
+
+		if File.directory?(path)
+			podfiles = Dir.glob("#{path}/*.podspec")
+			puts "#{podfiles}"
+			if podfiles.length == 0
+				puts %('#{dir}'下无法找到'.podspec'文件)
+				return nil
+			elsif podfiles.length == 1
+				path = podfiles.first
+			else
+				puts "目录下找到多个podspec文件！"
+				podfiles.each_with_index do |elem, index|
+					basename = File.basename(elem)
+					puts %(#{index}.#{basename} )
+				end
+				puts "请指定您当前需要的操作的文件,输入它的序号:"
+				i = gets.to_i
+
+				case i
+				when 0 .. (podfiles.length-1)
+					path = podfiles[i.to_i]	
+				else
+					puts "输入错误❌"
+					path = nil
+				end
+				
+			end
+		end
+	end
+
+	path
+
+end
+
 
 # 给定一个路径，前往校验podspec文件的合法性，给定的额是目录就会从目录下搜索文件，指定的是文件则直接进行验证
 def libLintPodspec(path)
 
 	path = "/Users/qwkj/Desktop/IOS_Pod_Spec_Repo/千网PodRepo/QWCrashReporter/1.0.8/"
-	# 检查path是否给的是目录，如果是文件路径久转为上级目录
-	path = File.expand_path(path)
-	return unless File.exist?(path)
-
-	unless path =~ /.podspec$/
-
-		puts "未检测到podspec文件"
-
-		if File.directory?(path)
-			podfiles = Dir.glob("#{path}/*.podspec")
-
-			puts "#{podfiles}"
-			if podfiles.length == 0
-				puts %('#{dir}'下无法找到'.podspec'文件)
-				return
-			elsif podfiles.length == 1
-				path = podfiles.first
-			else
-				puts "目录下找到多个podspec文件，请指定您当前需要的操作的"
-				# TODO: 显示所有找到的podspec，按顺序排出，让用户输入一个序号，然后根据序号指定的path进行操作
-			end
-		end
-	end
+	
+	path = pathWithPodspecSuffix(path)
+	
+	return unless path
 
 	cmd = []
 
@@ -37,7 +59,6 @@ def libLintPodspec(path)
 	cmd << '--allow-warnings'
 	cmd << '&&'
 	cmd << %(echo "haha") # 测试上面指令失败后是否会继续执行这条指令,结果是不会执行
-
 
 	IO.popen(cmd.join(' ')) do |io|
 		io.each do |line|
