@@ -11,13 +11,16 @@ def modifyPodspec(path:"",version:"0.0.0")
 		return 
 	end
 
-	# FIXME：这里写死了路径是为了方便调试，正式用的话需去掉
-	path = "/Users/qwkj/Documents/WZ_GitHub/Ruby_Learning/day_7/QW_Http.podspec"
+	# DEBUG：这里写死了路径是为了方便调试，正式用的话需去掉
+	# path = "/Users/qwkj/Documents/WZ_GitHub/Ruby_Learning/day_7/QW_Http.podspec"
+	# END
+
 	unless File.exist?path
 		puts "路径不存在"
 		return
 	end
 
+	puts "***修改podspec文件***"
 	File.open(path, "r+") do |f|
 		s = ""
 		f.each_line do |line|
@@ -39,8 +42,9 @@ end
 
 # 测试从podspec文件中获取version的值
 def testFetchVersionNumberInPodSpec
-	
-	path = "/Users/qwkj/Documents/WZ_GitHub/Ruby_Learning/day_7/QW_Http.podspec"
+	# FOR_DEBGU:
+	# path = "/Users/qwkj/Documents/WZ_GitHub/Ruby_Learning/day_7/QW_Http.podspec"
+	# END
 	unless File.exist?path
 		puts "路径不存在"
 		return
@@ -58,8 +62,9 @@ def testFetchVersionNumberInPodSpec
 end
 
 def testOutputFile(path)
-	
-	path = "/Users/qwkj/Documents/WZ_GitHub/Ruby_Learning/day_7/QW_Http.podspec"
+	# FOR_DEBGU:
+	# path = "/Users/qwkj/Documents/WZ_GitHub/Ruby_Learning/day_7/QW_Http.podspec"
+	# END
 
 	unless File.exist?path
 		puts "路径不存在"
