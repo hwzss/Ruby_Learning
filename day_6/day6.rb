@@ -3,8 +3,10 @@
 # TODO: 遍历处目录下所有的指定后缀文件的名称
 def fileNamesWithSuffix(fileSuffix); end
 
+# 找到指定路径下的podspec文件名
 def pathWithPodspecSuffix(path)
 
+	# path = "/Users/qwkj/Desktop/IOS_Pod_Spec_Repo/千网PodRepo/QWCrashReporter/1.0.8/"
 	path = File.expand_path(path)
 	return nil unless File.exist?(path)
 
