@@ -1,11 +1,16 @@
 
-# TODO: 修改podspec文件中s.version的值，
-def modifyPodspec(path:path,version:version_number)
+# 修改podspec的s.verison的值
+def modifyPodspec(path:"",version:"0.0.0")
 
-	# FIXME: 使用version_number值时会报错
+	if version == "0.0.0"
+		puts "请指定版本好的值，如 modifyPodspec version:#{version}"
+		return
+	end
+	unless version =~ /^\d{1,}.\d.\d$|^\d{1,}.\d$|^\d{1,}$/
+		puts "version:#{version}的格式不对"
+		return 
+	end
 
-	version = "12.0.5"
-	# FIXME: version_number的值校验，不能为空，且格式需A.B.C
 	path = "/Users/qwkj/Documents/WZ_GitHub/Ruby_Learning/day_7/QW_Http.podspec"
 	unless File.exist?path
 		puts "路径不存在"

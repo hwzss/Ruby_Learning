@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "QW_Http"
-  s.version      = "12.0.5"
+  s.version      = "12.0.2.2"
   s.summary      = "QWKJ's http tool"
   s.homepage     = "https://github.com/hwzss/QW_Http"
   s.license      = { :type => "MIT", :file => "LICENSE" }
