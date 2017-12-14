@@ -31,7 +31,7 @@ def modifyPodspec(path:"",version:"0.0.0")
 				line = line.sub(/\d{1,}.\d.\d|\d{1,}.\d|\d{1,}/) do |match| 
 					version.to_s
 				end
-			end
+			end 
 			s += line
 		end
 		puts "#{s}"

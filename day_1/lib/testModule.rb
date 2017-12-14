@@ -1,4 +1,15 @@
 module Xh
+
+	def self.oldoldPrice
+		puts "250块"
+	end
+
+	def oldPrice
+		puts "200块"
+	end
+
+	module_function :oldPrice  #这个描述将导致无法在外部使用，类似于self.
+
 	class Book 
 
 		def self.price
