@@ -65,7 +65,7 @@ def testOutputFile(path)
 	# FOR_DEBGU:
 	# path = "/Users/qwkj/Documents/WZ_GitHub/Ruby_Learning/day_7/QW_Http.podspec"
 	# END
-
+	
 	unless File.exist?path
 		puts "路径不存在"
 		return
